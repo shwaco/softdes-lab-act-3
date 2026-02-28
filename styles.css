@@ -1,0 +1,15 @@
+.title {
+    background-color: blanchedalmond;
+    text-align: center;
+}
+
+div {
+    background-color: gainsboro;
+    text-align: center;
+    padding: 10px;
+}
+
+.button {
+    background-color: ghostwhite;
+}
+
