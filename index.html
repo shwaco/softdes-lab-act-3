@@ -6,51 +6,54 @@
     <title>Software Design: Lab Act 3</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    
-    <div class="calculator-container">
+    <div class="option-container">
         <div class="paradigms">
-            <button onclick="ParadigmTo(Procedural)">Procedural Paradigm (C)</button>
-            <button onclick="ParadigmTo(OOP)">Object-Oriented Paradigm (Java)</button>
-            <button onclick="ParadigmTo(Functional)">Functional Paradigm (Python)</button>
-            <button onclick="ParadigmTo(EDP)">Event-Driven Paradigm (Javascript)</button>
+            <button onclick="ParadigmTo('Procedural')">Procedural Paradigm (C)</button>
+            <button onclick="ParadigmTo('OOP')">Object-Oriented Paradigm (Java)</button>
+            <button onclick="ParadigmTo('Functional')">Functional Paradigm (Python)</button>
+            <button onclick="ParadigmTo('EDP')">Event-Driven Paradigm (JS)</button>
         </div>
+    </div>
+
+
+    <div class="calculator-container">
+        
 
         <div class="calculator">
             <div id="set-display">Mode: Event-Driven Paradigm (JS)</div>
             <input type="text" id="display" readonly>
 
             <div class="buttons">
-
-                <button id="clr" onclick="clearDisplay()">Clr</button>
                 <button onclick="appendToDisplay('7')">7</button>
                 <button onclick="appendToDisplay('8')">8</button>
                 <button onclick="appendToDisplay('9')">9</button>
-                <button onclick="appendToDisplay('+')" id="plus">+</button>
+                <button id="clr" onclick="clearDisplay()" class="operator-btn">Clr</button>
+
                 <button onclick="appendToDisplay('4')">4</button>
                 <button onclick="appendToDisplay('5')">5</button>
                 <button onclick="appendToDisplay('6')">6</button>
-                <button onclick="appendToDisplay('-')" id="minus">-</button>
+                <button onclick="appendToDisplay('+')" class="operator-btn">+</button>
+
                 <button onclick="appendToDisplay('1')">1</button>
                 <button onclick="appendToDisplay('2')">2</button>
                 <button onclick="appendToDisplay('3')">3</button>
-                <button onclick="appendToDisplay('*')" id="multiply">*</button>
+                <button onclick="appendToDisplay('-')" class="operator-btn">-</button>
+
                 <button onclick="appendToDisplay('0')">0</button>
                 <button onclick="appendToDisplay('.')">.</button>
                 <button id="equal" onclick="calculate()">=</button>
-                <button onclick="appendToDisplay('/')" id="divide">/</button>
-                <button></button>
-                <button></button>
-                <button></button>
+                <button onclick="appendToDisplay('*')" class="operator-btn">*</button>
+                
+                <button>:p</button>
+                <button>:o</button>
+                <button>:]</button>
+                <button onclick="appendToDisplay('/')" class="operator-btn">/</button>
             </div>
         </div>
-        
     </div>
 
-   
-
-
-    
-   
+    <script src="./script.js"></script>
 </body>
 </html>
