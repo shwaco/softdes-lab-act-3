@@ -40,9 +40,13 @@ def run_calculator():
     
     while True:
         try:
+            print("==================================")
             num1 = float(input("Enter first number: "))
+            print("==================================")
             op_symbol = input("Enter operation (+, -, *, /, %): ")
+            print("==================================")
             num2 = float(input("Enter second number: "))
+            print("==================================")
         except ValueError:
             print("Error: Invalid numeric input. Try again.\n")
             continue
