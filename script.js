@@ -1,45 +1,34 @@
-// update logic
+const express = require('express');
+const { exec } = require('child_process');
+const cors = require('cors');
+const app = express();
+const port = 3000;
 
-let currentParadigm = 'EDP';
+app.use(cors());
 
-function ParadigmTo(mode) {
-    currentParadigm = mode;
-    const modeIndicator = document.getElementById('set-display');
-    modeIndicator.innerText = `Mode: ${mode} Paradigm`;
+app.get('/api/calc', (req, res) => {
+    const { lang, expr } = req.query;
+    let command = '';
 
-    console.log(`${mode} mode`);
-}
+    const parts = expr.match(/(\d+\.?\d*)([\+\-\*\/\%])(\d+\.?\d*)/);
+    if (!parts) return res.json({ result: "Invalid Format" });
 
+    const [_, n1, op, n2] = parts;
 
-function appendToDisplay(value) {
-    const display = document.getElementById('display');
-    display.value += value;
-}
-
-function clearDisplay() {
-    document.getElementById('display').value = '';
-}
-
-// integration
-
-async function calculate() {
-
-    const displayElement = document.getElementById('display');
-
-    const expression = displayElement.value;
-
-    if (currentParadigm === 'EDP') {
-
-    try {
-        document.getElementById('display').value = eval(expression);
-    } 
-    catch (e) {
-        document.getElementById('display').value = "Error";
-    } 
-} else { 
-        const response = await fetch(`/api/calc?lang=${currentParadigm}&expr=${expression}`);
-        const data = await response.json();
-        document.getElementById('display').value = data.result;
+    if (lang === 'Procedural') {
+        command = `./c_calc ${n1} "${op}" ${n2}`;
+    } else if (lang === 'OOP') {
+        command = `java SmartCalculator ${n1} "${op}" ${n2}`;
+    } else if (lang === 'Functional') {
+        command = `python3 calc.py ${n1} "${op}" ${n2}`;
     }
 
-}
+    exec(command, (error, stdout, stderr) => {
+        if (error) return res.json({ result: "Error" });
+        res.json({ result: stdout.trim() });
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
